@@ -1,0 +1,42 @@
+{%extends 'basetemplate.html'%} 
+
+{% block body%}
+
+<!-- Body content goes here -->
+<div class="container-fluid">
+   
+    <div class="row">
+        <div class="col-12 pt-4 pb-4">
+            <h1 class="text-center">{{data.title}}</h1>
+            <h4 class="text-center h6">{{data.language}}</h4>
+            <div class="text-right">
+                <button onclick="copyToClipboard('#fetched_code')" class="btn btn-warning">Copy</button>
+                <a href="{% url 'edit' data.id %}" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Edit</a>
+                <a href="{% url 'deleteData' data.id %}" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10">
+            <pre><code id="fetched_code">{{data.code}}</code></pre>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+</div>
+
+<script>
+
+function copyToClipboard(element) {
+  alert("Copied");
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+</script>
+{%endblock%}

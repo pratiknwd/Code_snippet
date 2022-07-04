@@ -1,0 +1,44 @@
+{%extends 'basetemplate.html'%} {% block body%}
+<div class="container">
+  <!-- row -->
+  <div class="row">
+
+    <div class="col-sm-12 mt-4">
+
+      <!-- django forms -->
+      <form action="" method="POST">
+        {% load widget_tweaks %}
+        {% csrf_token %}
+          {{ form.non_field_errors }}
+          <div class="form-group">
+              {{ form.code.errors }}
+              <label class="h4" for="{{ form.code.id_for_label }}">Paste Here</label>
+              {{ form.code |add_class:"form-control"}}
+          </div>
+          <div class="form-group">
+              {{ form.title.errors }}
+              <label class="h4" for="{{ form.title.id_for_label }}">Enter Title</label>
+              {{ form.title |add_class:"form-control" }}
+          </div>
+        
+          <div class="text-right form-group">
+            <button type="submit" class="btn btn-secondary">Add to Snips</button>
+          </div>
+      </form>
+
+      <!-- form ends -->
+
+      <!-- alert -->
+      {% if message %}
+      <div class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+      {% endif %}
+
+      <!-- alert ends-->
+
+    </div>
+  </div>
+  <!-- row -->
+  {%endblock%}
+</div>
